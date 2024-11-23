@@ -5,111 +5,125 @@
   <script type="text/javascript" src="sudoku.js"></script>
   <link rel="icon" href="opensudoku.svg">
   <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
     body {
-      font-family: Calibri, sans-serif;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #8e44ad, #3498db);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #fff;
+      margin-top:4vh;
     }
 
     #container {
-      text-align: center
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      height: 100%;
+      max-width: 600px;
+      margin-top: 10vh;
     }
 
     table {
       border-collapse: collapse;
-      font-size: 2em;
-      margin: 0 auto;
+      margin: 20px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    colgroup,
-    tbody {
-      border: solid medium;
-    }
-
+    table,
     td {
-      border: solid thin;
-      height: 1.4em;
-      width: 1.4em;
-      text-align: center;
-      padding: 0;
-    }
-
-    /* table styling  */
-
-
-    button {
-      margin-top: 15px;
       font-size: 1.5em;
     }
 
-    padd {
-      padding-bottom: 100px;
-    }
-
-
-    .center-button {
+    td {
+      border: 1px solid #ccc;
+      height: 50px;
+      width: 50px;
       text-align: center;
+      vertical-align: middle;
+      background-color: #f3f4f6;
+      transition: all 0.3s ease;
     }
 
-    /* image styling  */
-    img {
-      height: 100px;
-      width: 400px;
-      border-radius: 50px;
-      object-fit: cover;
-      margin-bottom: 20px;
+    td:focus {
+      outline: 2px solid #3498db;
+      background-color: #eaf2fd;
     }
 
-
-    /* Button Styling */
     button {
-      margin: 15px 10px;
-      padding: 10px 20px;
-      font-size: 1rem;
+      font-size: 1.2em;
       color: white;
-      background-color: #007bff;
+      background: #8e44ad;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin: 15px 10px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: transform 0.2s, background-color 0.3s;
     }
 
     button:hover {
-      background-color: #0056b3;
+      background: #732d91;
+      transform: scale(1.1);
     }
 
-    /* Connect Button */
+    img {
+      height: 120px;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+      /* margin-top: 30px; */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+
     .center-button {
-      margin-top: 20px;
-      text-align: center;
+      margin-top: 70px;
     }
 
     .button {
-      margin-top: 10px;
-      padding: 15px 25px;
+      display: inline-block;
       font-size: 1rem;
-      color: white;
-      background-color: #007bff;
+      padding: 10px 20px;
+      background: #3498db;
+      color: #fff;
       text-decoration: none;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
+      border-radius: 10px;
+      transition: transform 0.2s, background-color 0.3s;
     }
 
     .button:hover {
-      background-color: #0056b3;
+      background: #2980b9;
+      transform: scale(1.1);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 10px 0;
+      font-weight: 600;
+      color: #4a4a4a;
     }
   </style>
 </head>
 
 <body>
-
-
   <div id="container">
-    <img src="img2.jpeg" style="height:100px ; width: 400px; text-align :left; border-radius:100px ">
+    <img src="img2.jpeg" alt="Sudoku Solver Logo">
 
-    <h1 class="padd">Sudoku Solver</h1>
+    <h1>Sudoku Solver</h1>
 
-    <table id="sudoku-board">
-
-
+    <table id="sudoku-board" style="color: black">
       <colgroup>
         <col>
         <col>
@@ -133,6 +147,7 @@
           <td contenteditable="true"></td>
           <td contenteditable="true"></td>
           <td contenteditable="true"></td>
+        </tr>
       <tr>
         <td contenteditable="true"></td>
         <td contenteditable="true"></td>
@@ -143,6 +158,7 @@
         <td contenteditable="true"></td>
         <td contenteditable="true"></td>
         <td contenteditable="true"></td>
+      </tr>
       <tr>
         <td contenteditable="true"></td>
         <td contenteditable="true"></td>
@@ -153,77 +169,99 @@
         <td contenteditable="true"></td>
         <td contenteditable="true"></td>
         <td contenteditable="true"></td>
-        <tbody>
-          <tr>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-          <tr>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-          <tr>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-        <tbody>
-          <tr>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-          <tr>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-          <tr>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
+      </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+      </tbody>
     </table>
-    <div>
+    <div style="margin:-3vh ;">
       <button id="solve-button">Solve!</button>
-    </div>
-    <div>
-      <button id="clear-button">Clear board</button>
+      <button id="clear-button">Clear Board</button>
     </div>
   </div>
+  <div class="center-button" style="margin-top: 3vh;">
+    <a href="https://in.linkedin.com/in/prash-nitp" target="_blank" class="button">
+      Let's Connect
+    </a>
+  </div>
 </body>
+
+
+<div class="center-button" style="margin: 2vh;">
+  <a href="temp.html" target="_blank" class="button">
+    Not Like Design? Try another one &rarr;
+  </a>
+</div>
+
 
 <script type="text/javascript">
   document.getElementById("sudoku-board").addEventListener("keyup", function (event) {
@@ -284,12 +322,5 @@
     }
   }
 </script>
-
-
-<div class="center-button">
-  <a href="https://in.linkedin.com/in/prash-nitp" target="_blank" class="button">
-    Let's Connect
-  </a>
-</div>
 
 </html>

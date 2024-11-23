@@ -1,0 +1,347 @@
+<html>
+
+<head>
+  <title>Sudoku Solver</title>
+  <script type="text/javascript" src="sudoku.js"></script>
+  <link rel="icon" href="opensudoku.svg">
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #8e44ad, #3498db);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Adjust alignment for mobile */
+    height: auto; /* Allow for scrolling */
+    color: #fff;
+  }
+  
+  #container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    width: 95%; /* Adjust width for smaller screens */
+    max-width: 600px;
+    margin: 5vh auto; /* Center container with spacing */
+  }
+  
+  table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Allow table to shrink to fit mobile screens */
+    max-width: 500px;
+  }
+  
+  table,
+  td {
+    font-size: 1em; /* Adjust font size for smaller screens */
+  }
+  
+  td {
+    border: 1px solid #ccc;
+    height: 40px; /* Reduce size for smaller screens */
+    width: 40px; /* Reduce size for smaller screens */
+    text-align: center;
+    vertical-align: middle;
+    background-color: #f3f4f6;
+    transition: all 0.3s ease;
+  }
+  
+  button {
+    font-size: 1rem; /* Adjust button size */
+    padding: 10px 15px; /* Smaller padding for smaller screens */
+    background: #8e44ad;
+    border: none;
+    border-radius: 10px;
+    margin: 10px 5px; /* Adjust spacing */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+  }
+  
+  img {
+    height: 15vh;
+    width: 100%; /* Ensure image scales properly on mobile */
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px; /* Add spacing below image */
+  }
+  
+  .center-button {
+    margin-top: 20px; /* Adjust spacing */
+  }
+  
+  .center-button .button {
+    font-size: 1rem; /* Adjust button size */
+    padding: 10px 15px; /* Adjust padding */
+  }
+  
+  h1 {
+    font-size: 2em; /* Adjust font size */
+    margin: 10px 0;
+    font-weight: 600;
+    color: #4a4a4a;
+  }
+  
+  /* Media Queries for Mobile Devices */
+  @media screen and (max-width: 768px) {
+    table,
+    td {
+      font-size: 0.8em; /* Smaller font size */
+    }
+  
+    td {
+      height: 30px; /* Smaller cell size */
+      width: 30px;
+    }
+  
+    button {
+      font-size: 0.9rem; /* Adjust button font size */
+      padding: 8px 12px; /* Adjust button padding */
+    }
+  
+    h1 {
+      font-size: 1.8em; /* Smaller heading size */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    table,
+    td {
+      font-size: 0.7em; /* Even smaller font size for narrow screens */
+    }
+  
+    td {
+      height: 25px;
+      width: 25px; /* Minimum cell size */
+    }
+  
+    h1 {
+      font-size: 1.5em; /* Even smaller heading size */
+    }
+  
+    button {
+      font-size: 0.8rem; /* Smaller button font size */
+      padding: 6px 10px;
+    }
+  }
+  
+</style>
+ 
+</head>
+
+<body>
+  <div id="container">
+    <img src="img2.jpeg" alt="Sudoku Solver Logo">
+
+    <h1>Sudoku Solver</h1>
+
+    <table id="sudoku-board" style="color: black">
+      <colgroup>
+        <col>
+        <col>
+        <col>
+        <colgroup>
+          <col>
+          <col>
+          <col>
+          <colgroup>
+            <col>
+            <col>
+            <col>
+          <tbody>
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+      <tr>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+      </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin:-3vh ;">
+      <button id="solve-button">Solve!</button>
+      <button id="clear-button">Clear Board</button>
+    </div>
+  </div>
+  <div class="center-button" style="margin-top: 3vh;">
+    <a href="https://in.linkedin.com/in/prash-nitp" target="_blank" class="button">
+      Let's Connect
+    </a>
+  </div>
+</body>
+
+
+<div class="center-button" style="margin: 2vh;">
+  <a href="temp.html" target="_blank" class="button">
+    Not Like Design? Try another one &rarr;
+  </a>
+</div>
+
+
+<script type="text/javascript">
+  document.getElementById("sudoku-board").addEventListener("keyup", function (event) {
+    if (event.target && event.target.nodeName == "TD") {
+      var validNum = /[1-9]/;
+      var tdEl = event.target;
+      if (tdEl.innerText.length > 0 && validNum.test(tdEl.innerText[0])) {
+        tdEl.innerText = tdEl.innerText[0];
+      } else {
+        tdEl.innerText = "";
+      }
+    }
+  });
+
+  document.getElementById("solve-button").addEventListener("click", function (event) {
+    var boardString = boardToString();
+    var solution = SudokuSolver.solve(boardString);
+    if (solution) {
+      stringToBoard(solution);
+    } else {
+      alert("Invalid board!");
+    }
+  })
+
+  document.getElementById("clear-button").addEventListener("click", clearBoard);
+
+  function clearBoard() {
+    var tds = document.getElementsByTagName("td");
+    for (var i = 0; i < tds.length; i++) {
+      tds[i].innerText = "";
+    }
+  }
+
+  function boardToString() {
+    var string = "";
+    var validNum = /[1-9]/;
+    var tds = document.getElementsByTagName("td");
+    for (var i = 0; i < tds.length; i++) {
+      if (validNum.test(tds[i].innerText[0])) {
+        string += tds[i].innerText;
+      } else {
+        string += "-";
+      }
+    }
+    return string;
+  }
+
+  function stringToBoard(string) {
+    var currentCell;
+    var validNum = /[1-9]/;
+    var cells = string.split("");
+    var tds = document.getElementsByTagName("td");
+    for (var i = 0; i < tds.length; i++) {
+      currentCell = cells.shift();
+      if (validNum.test(currentCell)) {
+        tds[i].innerText = currentCell;
+      }
+    }
+  }
+</script>
+
+</html>
